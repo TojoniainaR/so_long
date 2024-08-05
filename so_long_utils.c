@@ -6,16 +6,16 @@
 /*   By: torandri <torandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 20:40:34 by torandri          #+#    #+#             */
-/*   Updated: 2024/07/01 13:40:38 by torandri         ###   ########.fr       */
+/*   Updated: 2024/08/05 13:06:37 by torandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-size_t	ft_strlen_mod(const char *str)
+int	ft_strlen_mod(const char *str)
 {
-	size_t	i;
-	size_t	count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -78,6 +78,32 @@ void	ft_get_pos_player(t_data *data)
 	}
 	data->pos_x = i;
 	data->pos_y = j - 1;
+}
+
+void	ft_get_pos_exit(t_data *data)
+{
+	int	i;
+	int	j;
+	int	found;
+
+	j = 0;
+	found = 0;
+	while (j < data->y && found != 1)
+	{
+		i = 0;
+		while (i < data->x)
+		{
+			if (data->map[j][i] == 'E')
+			{
+				found = 1;
+				break ;
+			}
+			i++;
+		}
+		j++;
+	}
+	data->pos_e_x = i;
+	data->pos_e_y = j - 1;
 }
 
 int	ft_collect_number(t_data *data)
