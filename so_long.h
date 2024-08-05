@@ -6,7 +6,7 @@
 /*   By: torandri <torandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:52:17 by torandri          #+#    #+#             */
-/*   Updated: 2024/07/22 15:17:04 by torandri         ###   ########.fr       */
+/*   Updated: 2024/08/05 14:08:19 by torandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ typedef struct s_data
 	int			height;
 	int			pos_x;
 	int			pos_y;
+	int			pos_e_x;
+	int			pos_e_y;
 	int			move;
 	int			collect;
 	char		*file;
@@ -89,19 +91,21 @@ typedef struct s_tmp_map
 	char	**map;
 }				t_tmp_map;
 
+int		ft_error(t_data data);
 int		ft_check_error(int argc, char *argv[]);
 int		take_value_x(int x, int fd);
 int		take_value_y(int y, int fd);
 int		ft_key_events(int keycode, t_data *data);
 int		ft_mouse_events(t_data *data);
 int		ft_check_map_error(int x, int y, char *file);
+int		ft_check_map_error_other(int x, int y, char *file);
 int		ft_collect_number(t_data *data);
 int		ft_loop_map(int x, int y, char **map);
 int		ft_check_map_valid(t_data *data);
 int		surrounded_vertical(int y, char **map);
 int		surrounded_horizontal(int x, int y, char **map);
+int		ft_strlen_mod(const char *str);
 char	**ft_tmp_map(int *x, int *y, char *file);
-size_t	ft_strlen_mod(const char *str);
 void	ft_free_when_quit(t_data *data);
 void	ft_free_map(char **map, int line);
 void	move_up_player(t_data *data);
@@ -109,6 +113,7 @@ void	move_down_player(t_data *data);
 void	move_left_player(t_data *data);
 void	move_right_player(t_data *data);
 void	ft_get_pos_player(t_data *data);
+void	ft_get_pos_exit(t_data *data);
 void	ft_initiate_data(t_data *data);
 void	ft_initiate_check(t_check_map *check);
 void	ft_map_size(int *x, int *y, char *file);
