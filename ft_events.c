@@ -6,7 +6,7 @@
 /*   By: torandri <torandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 14:26:31 by torandri          #+#    #+#             */
-/*   Updated: 2024/06/05 15:44:26 by torandri         ###   ########.fr       */
+/*   Updated: 2024/07/28 14:08:44 by torandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,6 @@ void	ft_free_when_quit(t_data *data)
 
 int	ft_key_events(int keycode, t_data *data)
 {
-	int		new_x;
-	int		new_y;
-
-	new_x = data->pos_x;
-	new_y = data->pos_y;
 	if (keycode == XK_ESC)
 	{
 		ft_free_when_quit(data);

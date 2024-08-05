@@ -6,17 +6,11 @@
 /*   By: torandri <torandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 16:13:38 by torandri          #+#    #+#             */
-/*   Updated: 2024/06/05 15:05:11 by torandri         ###   ########.fr       */
+/*   Updated: 2024/08/05 13:26:11 by torandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	ft_initiate_data_img(t_data_img *data_img)
-{
-	data_img->i = 1;
-	data_img->j = 1;
-}
 
 void	ft_free_put_img(t_data *data)
 {
@@ -30,11 +24,20 @@ void	ft_free_put_img(t_data *data)
 	}
 }
 
+void	ft_exit(t_data *data, t_data_img *data_img)
+{
+	if (data->map[data->pos_e_y][data->pos_e_x] != 'E' \
+	&& data->map[data->pos_e_y][data->pos_e_x] != 'P')
+		data->map[data->pos_e_y][data->pos_e_x] = 'E';
+	data_img->i = 1;
+	data_img->j = 1;
+}
+
 void	ft_image(t_data *data)
 {
 	t_data_img	data_img;
 
-	ft_initiate_data_img(&data_img);
+	ft_exit(data, &data_img);
 	while (data_img.j < data->y - 1 && \
 	data->map[data_img.j][data_img.i] != '\0')
 	{
