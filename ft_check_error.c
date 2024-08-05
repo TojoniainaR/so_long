@@ -6,7 +6,7 @@
 /*   By: torandri <torandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:39:43 by tojoniaina        #+#    #+#             */
-/*   Updated: 2024/07/22 15:16:08 by torandri         ###   ########.fr       */
+/*   Updated: 2024/08/05 14:12:29 by torandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_initiate_data(t_data *data)
 {
 	data->x = 0;
 	data->y = 0;
+	data->pos_e_x = 0;
+	data->pos_e_y = 0;
 	data->move = 1;
 	data->file = NULL;
 }
@@ -76,20 +78,15 @@ int	ft_check_error(int argc, char *argv[])
 		ft_printf("Error\nNot the right input, might be <map_name.ber>\n");
 		return (1);
 	}
+	return (0);
 }
 
 int	ft_check_map_error_other(int x, int y, char *file)
 {
 	char		**map;
-	t_data		data;
 
 	map = ft_tmp_map(&x, &y, file);
 	if (!map)
-	{
-		ft_free_map(map, y);
-		return (1);
-	}
-	else if (surrounded_vertical(y, map) == 1)
 	{
 		ft_free_map(map, y);
 		return (1);
@@ -99,4 +96,11 @@ int	ft_check_map_error_other(int x, int y, char *file)
 		ft_free_map(map, y);
 		return (1);
 	}
+	else if (surrounded_vertical(y, map) == 1)
+	{
+		ft_free_map(map, y);
+		return (1);
+	}
+	ft_free_map(map, y);
+	return (0);
 }

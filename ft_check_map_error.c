@@ -6,7 +6,7 @@
 /*   By: torandri <torandri@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:56:55 by torandri          #+#    #+#             */
-/*   Updated: 2024/07/22 15:12:27 by torandri         ###   ########.fr       */
+/*   Updated: 2024/08/05 16:39:34 by torandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	surrounded_vertical(int y, char **map)
 
 int	surrounded_horizontal(int x, int y, char **map)
 {
-	size_t	j;
+	int	j;
 
 	j = 0;
 	while (j < y && *map[j] != '\0')
@@ -94,10 +94,14 @@ int	inside_map(int x, int y, char **map)
 int	ft_check_map_error(int x, int y, char *file)
 {
 	char		**map;
-	t_data		data;
 
 	map = ft_tmp_map(&x, &y, file);
 	if (!map)
+	{
+		ft_free_map(map, y);
+		return (1);
+	}
+	if (ft_check_map_error_other(x, y, file) == 1)
 	{
 		ft_free_map(map, y);
 		return (1);
@@ -107,7 +111,7 @@ int	ft_check_map_error(int x, int y, char *file)
 		ft_free_map(map, y);
 		return (1);
 	}
-	else if (inside_map(x, y, map) == 1)
+	if (inside_map(x, y, map) == 1)
 	{
 		ft_free_map(map, y);
 		return (1);
